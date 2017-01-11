@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+</head>
+<body>
+<div id="root"></div>
+<script src="node_modules/babel-standalone/babel.js"></script>
+
+<script type="text/babel">
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state={first:0};
+        }
+
+        xunhuan(){
+            this.setState((prevState)=>({
+                first:prevState.first+1
+            }))
+        }
+
+        componentDidMount() {
+            this.time = setInterval(()=>{this.xunhuan()}, 1000);
+        }
+
+
+        render(){
+            return (
+                    <div>
+                    <h1>秒表</h1>
+                    <h1>时间：{this.state.first}s</h1>
+            </div>
+        )
+        }
+    }
+    ReactDOM.render(<Time/>,document.getElementById("root"));
+</script>
+</body>
+</html>
